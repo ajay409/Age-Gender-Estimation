@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Live Streaming Demonstration</title>
+    <style>
+        #cameraStream{
+            /* position:absolute; */
+            /* left:100px; */
+            /* top:100px; */
+            width:800px;
+            height:600px;
+            padding-left:100px;
+            padding-top:100px;
+        }
+        /* .info{
+            position:absolute;
+            left:1000px;
+            top:100px;
+        } */
+    </style>
+</head>
+<body>
+<div >
+    <div class="d-flex">
+        <div >
+            <h3 >Live Streaming</h3>
+            <!-- <video src="{{ url_for('video_feed') }}" id="cameraStream" width="800" height="600" auto></video> -->
+            <img src="{{ url_for('video_feed') }}" id="cameraStream">
+        </div>
+        <div class="info">
+
+        </div>
+    </div>
+</div>
+			<script src="/static/assets/js/jquery.min.js"></script>
+			<script src="/static/assets/js/browser.min.js"></script>
+			<script src="/static/assets/js/breakpoints.min.js"></script>
+			<script src="/static/assets/js/util.js"></script>
+			<script src="/static/assets/js/main.js"></script>
+
+<script>
+    window.onload = function(){
+
+        function getInfoTable(actual, prediction){
+         return `<table>
+<tr>
+    <td>Actual Name:</td>
+    <td>${actual.name}</td>
+</tr>
+<tr>
+    <td>Predicted Name:</td>
+    <td>${prediction.name || ""}</td>
+</tr>
+<tr>
+    <td>Actual Age:</td>
+    <td>${actual.age || "NA"}</td>
+</tr>
+<tr>
+    <td>Predicted Age:</td>
+    <td>${prediction.age}</td>
+</tr>
+<tr>
+    <td>Actual Gender:</td>
+    <td>${actual.gender || "NA"}</td>
+</tr>
+<tr>
+    <td>Predicted Gender:</td>
+    <td>${prediction.gender || "NA"}</td>
+</tr>
+<tr>
+    <td>Phone:</td>
+    <td>${actual.phone || "NA"}</td>
+</tr>
+
+</table>`
+        }
+        let img = document.querySelector("#cameraStream")
+        let infoBox = document.querySelector(".info")
+        console.log(img.naturalWidth, img.naturalHeight)
+        document.onclick = function(e){
+            let cx = e.clientX
+            let cy = e.clientY
+            let ix = cx - 100
+            let iy = cy - 100
+            const actualX = (img.naturalWidth * ix)/800
+            const actualY = (img.naturalHeight * iy)/600
+            fetch(`/getInfo?x=${actualX}&y=${actualY}`)
+                .then((d)=>d.json())
+                .then(d => {
+                    // alert(JSON.stringify(d))
+                    if(d.found == 0){
+                        infoBox.innerHTML = `<h1>No face found!!</h1>`
+                    }
+                    else{
+                        infoBox.innerHTML = getInfoTable(d.actual, d.prediction)
+                    }
+
+                })
+        }
+    }
+</script>
+</body>
+</html>

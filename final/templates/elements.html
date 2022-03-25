@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Face  attribute extraction and recognition from Images</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
+		<style>
+			.col-6.col-12-xsmall {
+				margin-top: 20px;
+			}
+			.img{
+				width:300px;
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="index.html">FaceAttributeExtractor</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="elements.html">Elements</a></li>
+					<li><a href="generic.html">Generic</a></li>
+				</ul>
+			</nav>
+
+		<!-- Heading -->
+			<div id="heading" >
+				<h1>An app to extract face attributes </h1>
+			
+			</div>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div >
+					<div class="content">
+
+					<!-- Elements -->
+						<div class="row">
+							<div class="col-6-medium col-12-medium">
+
+								<!-- Text -->
+									<h3>Add Face</h3>
+									<form method="post" action="/train" enctype="multipart/form-data">
+										<div class="row gtr-uniform">
+											<div class="col-4 col-12-xsmall">
+												<input type="text" name="name" id="name" value="" placeholder="Name" />
+											</div>
+											<div class="col-4 col-12-xsmall">
+												<input type="text" name="age" id="age" value="" placeholder="Age" />
+											</div>
+											<div class="col-4 col-12-xsmall">
+												<input type="text" name="phone" id="phone" value="" placeholder="phone" />
+											</div>
+										</div>
+										
+										<div class="row get-uniform my-5">
+											<div class="col-6 col-12-xsmall">
+												<div class="form-group ">
+													<input type="radio" class="form-control" name="gender"  value="Male"  id="male">
+													<label for="male">Male</label>
+
+													<input type="radio" name="gender"  value="Female"  id="female">
+													<label for="female">Female</label>
+
+												</div>
+												
+											</div>
+										</div>
+										<div class="row get-uniform">
+
+										</div>
+
+											<div class="col-6 col-12-xsmall">
+												<input type="file" name="image" id="image" value="" placeholder="Name" />
+											</div>
+									
+											<!-- Break -->
+											<div class="col-12">
+												<ul class="actions">
+													<li><input type="submit" value="Add" class="primary" /></li>
+												</ul>
+											</div>
+									</form>
+								</div>
+
+
+							<div class="col-6-medium col-12-medium">
+								<div class="row">
+									<div class="col-8">
+										<h3>Upload a image to get prediction / OR /</h3>
+										<form method="post" action="/test" enctype="multipart/form-data">
+											<div class="row gtr-uniform">
+																																																		
+											<div class="col-6 col-12-xsmall">      
+												
+												</div>
+												<div class="col-6 col-12-xsmall">
+													<input type="file" name="image" id="file" value="" placeholder="Name" />
+												</div>
+										
+												<!-- Break -->
+												<div class="col-12">
+													<ul class="actions">
+														<li><input type="submit" value="Upload" class="primary" /></li>
+													</ul>
+												</div>
+											</div>
+										</form>
+									</div>
+									<div class="col-4">
+										<a class="btn primary" href="/live">Go Live</a>
+									</div>
+								</div>
+								<!-- Buttons -->
+									
+									
+								<!-- Form -->
+									
+								<!-- Image -->
+								{% if image %}
+								<div class="image-box">
+									<img src="data:image/png;base64,{{image}}" alt="image" class="img">
+								</div>
+								{% endif %}
+					
+				
+
+							</div>
+						</div>
+					</div>
+				
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="content">
+						<section>
+							<h3>Accumsan montes viverra</h3>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+						</section>
+						<section>
+							<h4>Sem turpis amet semper</h4>
+							<ul class="alt">
+								<li><a href="#">Dolor pulvinar sed etiam.</a></li>
+								<li><a href="#">Etiam vel lorem sed amet.</a></li>
+								<li><a href="#">Felis enim feugiat viverra.</a></li>
+								<li><a href="#">Dolor pulvinar magna etiam.</a></li>
+							</ul>
+						</section>
+						<section>
+							<h4>Magna sed ipsum</h4>
+							<ul class="plain">
+								<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+								<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+								<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+								<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="copyright">
+						&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+					</div>
+				</div>
+			</footer>
+			<script>
+				{% if request.args.get("msg") %}
+				alert("{{request.args.get('msg')}}");
+				{% endif %}
+			</script>
+
+		<!-- Scripts -->
+			<script src="/static/assets/js/jquery.min.js"></script>
+			<script src="/static/assets/js/browser.min.js"></script>
+			<script src="/static/assets/js/breakpoints.min.js"></script>
+			<script src="/static/assets/js/util.js"></script>
+			<script src="/static/assets/js/main.js"></script>
+
+	</body>
+</html>
